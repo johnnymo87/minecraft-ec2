@@ -18,6 +18,7 @@ scp -i ~/.ssh/minecraft.pem ./backup.sh ubuntu@ec2-3-90-250-152.compute-1.amazon
 
 #### The file structure
 I append the `.bashrc` from here to the `.bashrc` in the EC2. I install minecraft in the following directory structure:
+```sh
 ▾ /usr
   ▾ /games
     ▾ /minecraft
@@ -27,6 +28,7 @@ I append the `.bashrc` from here to the `.bashrc` in the EC2. I install minecraf
       ▾ 1.18/
         ▾ 01/
           ...
+```
 
 Inside `/usr/games/minecraft`, the first level of directories is the minecraft server version. The second is the ordinal number of the world, starting at 01.
 
