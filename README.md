@@ -1,8 +1,8 @@
 # minecraft-ec2
-This a collection of scripts that I use on my minecraft EC2.
+This is a collection of notes for how I run a minecraft server on an EC2 instance.
 
 ## The EC2 instance
-I run my minecraft server on [a t2.medium EC2](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#InstanceDetails:instanceId=i-04ad35287a24f3ddf). It has port 22 open for ssh and port 25565 open for accepting minecraft traffic. I use IP-whitelisting to control who can access it.
+I run my minecraft server on [a t2.medium EC2](https://console.aws.amazon.com/ec2/v2/home). It has port 22 open for ssh and port 25565 open for accepting minecraft traffic. I use IP-whitelisting to control who can access it.
 
 I use my `~/.ssh/minecraft.pem` to authenticate when sshing in, e.g.
 ```sh
