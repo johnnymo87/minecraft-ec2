@@ -61,3 +61,46 @@ I use `backup.sh` to back up saves of my world to [an S3 bucket named `jonathan-
   ▾ 01/
     world-some-other-timestamp.zip
 ```
+
+## Running Minecraft
+I use the following aliases (from `.bashrc`):
+```sh
+alias cd-minecraft="cd /usr/games/minecraft/1.18/01"
+alias minecraft="cd-minecraft && java -Xms3G -Xmx3G -jar server.jar nogui"
+alias backup-minecraft="cd-minecraft && BUCKET_PATH=jonathan-mohrbacher-minecraft-01/1.18/01 ARCHIVE_LIMIT=10 ./backup.sh world"
+```
+I use `minecraft` to run the game, and `backup-minecraft` to back it up to my S3 bucket.
+
+The `-Xms` flag controls how much memory the game can use when booting, and the `-Xmx` flag controls how much it can use while running. See [this wiki page](https://minecraft.fandom.com/wiki/Tutorials/Setting_up_a_server) for more details. [This article](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/) explains more. A key point: since the t2.medium has 4G memory, I shouldn't use more than 3G for the game.
+
+## Settings
+Once the world has booted once, the server creates a bunch of files in the directory it's in. I edit them in place.
+
+#### server.properties
+I often change/add certain properties like so:
+```
+game-mode=creative
+level-seed=<whatever level seed looks interesting>
+difficulty=peaceful
+white-list=true
+enforce-whitelist=true
+```
+
+#### ops.json
+I created an `ops.json` file to give Livia and myself the ability to use commands, (e.g. [disabling the day night cycle](https://www.digminecraft.com/game_commands/stop_time.php)), and to whitelist our accounts (ops are automatically whitelisted). The `level` attribute refers to [permissions](https://minecraft.fandom.com/wiki/Permission_level).
+```json
+[
+  {
+    "uuid": "a767fb0d-6a04-4eb9-ab82-ca7082bd3d8a",
+    "name": "LiviaLou",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "6f26e739-2eed-44fd-b76a-8dfeec9a75ec",
+    "name": "johnnymo87",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]
+```
