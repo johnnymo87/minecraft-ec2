@@ -75,6 +75,8 @@ I use `minecraft` to run the game, and `backup-minecraft` to back it up to my S3
 
 The `-Xms` flag controls how much memory the game can use when booting, and the `-Xmx` flag controls how much it can use while running. See [this wiki page](https://minecraft.fandom.com/wiki/Tutorials/Setting_up_a_server) for more details. [This article](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/) explains more. A key point: since the t2.medium has 4G memory, I shouldn't use more than 3G for the game.
 
+For advice on what JVM flags to set for performance reasons, read [this guide](https://docs.papermc.io/paper/aikars-flags).
+
 ## Settings
 Once the world has booted once, the server creates a bunch of files in the directory it's in. I edit them in place.
 
@@ -87,6 +89,8 @@ difficulty=peaceful
 white-list=true
 enforce-whitelist=true
 ```
+
+For advice on what to change about `server.properties` for performance reasons, read [this guide](https://github.com/YouHaveTrouble/minecraft-optimization).
 
 #### ops.json
 I created an `ops.json` file to give Livia and myself the ability to use commands, (e.g. [disabling the day night cycle](https://www.digminecraft.com/game_commands/stop_time.php)), and to whitelist our accounts (ops are automatically whitelisted). The `level` attribute refers to [permissions](https://minecraft.fandom.com/wiki/Permission_level).
